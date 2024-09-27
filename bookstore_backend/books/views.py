@@ -18,7 +18,7 @@ class BookCreateView(APIView):
 
 # Read all Books
 class BookListView(ListAPIView):
-    queryset = Book.objects.all()
+    queryset = Book.objects.all().order_by('id')
     serializer_class = BookSerializer
     pagination_class = PageNumberPagination
 
