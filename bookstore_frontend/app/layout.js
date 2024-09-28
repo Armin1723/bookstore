@@ -1,6 +1,6 @@
-import Navbar from "@/components/shared/Navbar";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
+import Wrapper from "./Wrapper";
 
 export const metadata = {
   title: "Book App",
@@ -11,10 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="font-['inter'] min-h-screen w-screen flex flex-col">
+      <body className="font-['inter'] min-h-screen w-screen flex flex-col overflow-x-hidden">
         <StoreProvider>
-          <Navbar>Navbar</Navbar>
-          {children}
+          <Wrapper>{children}</Wrapper>
         </StoreProvider>
       </body>
     </html>

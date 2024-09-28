@@ -2,4 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in;
+}
 
+/* Custom-scrollbar */
+*::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    background-color: rgba(15, 11, 11, 0.164);   
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #2b2d2f84;
+    border-radius: 10px;
+    cursor: grab;
+}
+*::-webkit-scrollbar-thumb:active{
+    cursor: grabbing;
+}
+
+/* Button effect */
+.button-effect{
+    @apply relative overflow-hidden rounded-xl px-6 py-2 border border-gray-600 before:absolute before:bg-slate-900/70 before:left-0 before:bottom-0 before:rounded-lg before:w-0 before:h-0 before:z-[-99] before:transition-all before:duration-300 hover:before:h-full hover:before:w-full hover:text-white hover:shadow-[0_0_10px_gray];
+}
