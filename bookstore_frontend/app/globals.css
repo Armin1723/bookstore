@@ -6,25 +6,80 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    transition: all 0.3s ease-in;
+    transition: all 0.1s ease-in;
 }
 
 /* Custom-scrollbar */
 *::-webkit-scrollbar {
     width: 3px;
     height: 3px;
-    background-color: rgba(15, 11, 11, 0.164);   
+    background-color: rgba(15, 11, 11, 0.164);
 }
+
 *::-webkit-scrollbar-thumb {
     background-color: #2b2d2f84;
     border-radius: 10px;
     cursor: grab;
 }
-*::-webkit-scrollbar-thumb:active{
+
+*::-webkit-scrollbar-thumb:active {
     cursor: grabbing;
 }
 
 /* Button effect */
-.button-effect{
-    @apply relative overflow-hidden rounded-xl px-6 py-2 border border-gray-600 before:absolute before:bg-slate-900/70 before:left-0 before:bottom-0 before:rounded-lg before:w-0 before:h-0 before:z-[-99] before:transition-all before:duration-300 hover:before:h-full hover:before:w-full hover:text-white hover:shadow-[0_0_10px_gray];
+.button-effect {
+    @apply relative overflow-hidden rounded-xl px-6 py-1 border border-gray-600 before:absolute before:bg-slate-900/70 before:left-0 before:bottom-0 before:rounded-lg before:w-0 before:h-0 before:z-[-99] before:transition-all before:duration-300 hover:before:h-full hover:before:w-full hover:text-white hover:shadow-[0_0_10px_gray];
+}
+
+/* Hover Effect */
+.hover-effect{
+    @apply relative overflow-hidden before:h-[5px] before:bg-[#22072c44] before:absolute before:bottom-0 before:left-0 before:w-0 hover:before:w-full before:transition-all before:duration-300 hover:shadow-[0_0_25px_#1f1f1f];
+}
+
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 41px;
+    height: 20px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #d0bfd6;
+    border: 3px solid #b551da;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 1px;
+    transition: 0.4s;
+    border: 2px solid #f197f4c7;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.8));
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2b3a6345;
+}
+
+input:checked+.slider:before {
+    transform: translateX(22px);
 }

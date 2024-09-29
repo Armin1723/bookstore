@@ -11,7 +11,7 @@ const Wrapper = ({ children }) => {
         theme == "dark"
           ? "bg-zinc-900 text-white"
           : "bg-gradient-to-r from-transparent to-zinc-300/50"
-      } `}
+      } min-h-screen`}
     >
       <Navbar>Book Store</Navbar>
       {children}
