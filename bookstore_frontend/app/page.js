@@ -3,7 +3,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="cards-container grid grid-cols-2 max-sm:grid-cols-1 place-content-center gap-8 w-screen p-8 max-sm:p-4">
+    <div className="flex-1 cards-container grid grid-cols-2 max-sm:grid-cols-1 place-content-center gap-8 w-screen p-8 max-sm:p-4">
       {[
         {
           title: "The great Gatsby",

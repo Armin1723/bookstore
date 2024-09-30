@@ -24,7 +24,7 @@ const BookCard = ({ book }) => {
       >
 
         <div className="logo flex min-h-full items-center max-sm:items-start justify-center w-1/4">
-          <FaBook className="h-full drop-shadow-md text-3xl"/>
+          <FaBook className="h-full drop-shadow-md text-6xl"/>
         </div>
 
         <div className="details flex flex-col w-3/4">
