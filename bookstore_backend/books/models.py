@@ -6,5 +6,10 @@ class Book(models.Model):
     genre = models.CharField(max_length=100)
     published_year = models.IntegerField()
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['title', 'author'], name='unique_book')
+        ]
+
     def __str__(self):
         return self.title

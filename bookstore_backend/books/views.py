@@ -10,6 +10,13 @@ from django.http import Http404
 # Create a Book
 class BookCreateView(APIView):
     def post(self, request):
+        
+        title = request.data.get('title')
+        author = request.data.get('author')
+        # Check if a book with the same title and author exists
+        if Book.objects.filter(title=title, author=author).exists():
+            return Response({"error": "A book with this title and author already exists."}, status=status.HTTP_400_BAD_REQUEST)     
+        
         serializer = BookSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
