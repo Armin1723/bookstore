@@ -1,4 +1,5 @@
 "use client";
+import { baseUrl } from "@/lib/utils";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -13,7 +14,7 @@ const BookForm = ({ purpose }) => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch("http://localhost:8000/api/books/create/", {
+      const response = await fetch(`${baseUrl}/books/create/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +37,7 @@ const BookForm = ({ purpose }) => {
       <div className="title flex flex-col gap-2">
         <input
           type="text"
-          className={`outline-none focus:text-black  bg-transparent active:bg-transparent border-b-2 border-gray-500 p-2 pl-0 ${
+          className={`outline-none bg-transparent active:bg-transparent border-b-2 border-gray-500 p-2 pl-0 ${
             errors.title &&
             "border-red-700 text-red-700 placeholder:text-red-700"
           }`}
@@ -54,7 +55,7 @@ const BookForm = ({ purpose }) => {
       <div className="author flex flex-col gap-2">
         <input
           type="text"
-          className={`outline-none focus:text-black bg-transparent active:bg-transparent border-b-2 border-gray-500 p-2 pl-0 ${
+          className={`outline-none bg-transparent active:bg-transparent border-b-2 border-gray-500 p-2 pl-0 ${
             errors.title &&
             "border-red-700 text-red-700 placeholder:text-red-700"
           }`}
@@ -72,7 +73,7 @@ const BookForm = ({ purpose }) => {
       <div className="genre flex flex-col gap-2">
         <input
           type="text"
-          className={`outline-none focus:text-black bg-transparent active:bg-transparent border-b-2 border-gray-500 p-2 pl-0 ${
+          className={`outline-none bg-transparent active:bg-transparent border-b-2 border-gray-500 p-2 pl-0 ${
             errors.genre &&
             "border-red-700 text-red-700 placeholder:text-red-700"
           }`}
@@ -90,7 +91,7 @@ const BookForm = ({ purpose }) => {
       <div className="year flex flex-col gap-2">
         <input
           type="number"
-          className={`outline-none focus:text-black bg-transparent active:bg-transparent border-b-2 border-gray-500 p-2 pl-0 ${
+          className={`outline-none bg-transparent active:bg-transparent border-b-2 border-gray-500 p-2 pl-0 ${
             errors.published_year &&
             "border-red-700 text-red-700 placeholder:text-red-700"
           }`}

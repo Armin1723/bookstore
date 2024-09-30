@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -32,10 +32,24 @@
 }
 
 /* Hover Effect */
-.hover-effect{
+.hover-effect {
     @apply relative overflow-hidden before:h-[5px] before:bg-[#22072c44] before:absolute before:bottom-0 before:left-0 before:w-0 hover:before:w-full before:transition-all before:duration-300 hover:shadow-[0_0_25px_#1f1f1f];
 }
 
+/* Blob Animation Keyframes */
+@keyframes moveBlob {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(30%, 30%) scale(1.2);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
 
 /* Toggle Switch */
 .switch {

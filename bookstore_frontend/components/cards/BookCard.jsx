@@ -1,14 +1,10 @@
-"use client";
 import { motion } from "framer-motion";
 import React from "react";
-import { useSelector } from "react-redux";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
-import { MdDelete, MdEdit } from "react-icons/md";
 import { FaBook } from "react-icons/fa"
 
 const BookCard = ({ book }) => {
-  const theme = useSelector((state) => state.theme.value);
   const [ref, inView] = useInView();
 
   return (
@@ -36,23 +32,15 @@ const BookCard = ({ book }) => {
           </p>
           <div className="flex gap-4 pt-4">
             <Link
-              href={`/edit/${book.id}`}
+              href={`/books/${book.id}`}
               className="button-effect before:bg-gradient-to-br from-blue-500/80 to-blue-800/50 flex items-center justify-center gap-4"
             >
-              <p>Edit</p>
-              <span>
-                <MdEdit />
+              <span className="rotate-90 flex items-center justify-center tracking-wide">
+                |||
               </span>
+              <p>Details</p>
             </Link>
-            <Link
-              href={`/delete/${book.id}`}
-              className="button-effect before:bg-gradient-to-br from-red-700/80 to-red-800/50 flex items-center justify-center gap-4"
-            >
-              <p>Delete</p>
-              <span>
-                <MdDelete />
-              </span>
-            </Link>
+            
           </div>
         </div>
 

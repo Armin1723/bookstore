@@ -8,7 +8,7 @@ const ThemeToggle = () => {
   return (
     <div className="flex items-center justify-center">
       <label className="switch drop-shadow-md shadow-gray-800" >
-        <input type="checkbox" id="theme-toggle-checkbox" onClick={()=>dispatch(toggleTheme())}/>
+        <input type="checkbox" checked={theme === 'dark'} id="theme-toggle-checkbox" onChange={()=>dispatch(toggleTheme())}/>
         <span className={`slider ${theme === 'dark' ? 'before:bg-black' : 'before:bg-white'} round backdrop-blur-lg`}> </span>
       </label>
     </div>
