@@ -3,6 +3,7 @@ import BookCard from "@/components/cards/BookCard";
 import Pagination from "@/components/shared/Pagination";
 import { updateResults } from "@/lib/results/resultsSlice";
 import { baseUrl } from "@/lib/utils";
+import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -39,10 +40,17 @@ const page = () => {
     fetchBooks();
   }, [page]);
 
-  if (books.length === 0 && !error) {
+  if (books.length === 0 && !error && totalPages !== 0) {
     return (
       <div className="flex-1 flex items-center justify-center text-2xl">
         Loading...
+      </div>
+    );
+  } else if (totalPages == 0) {
+    return (
+      <div className="flex-1 flex flex-col gap-4 items-center justify-center text-2xl">
+        Its Quite Lonely in here...
+        <Link href="add/" className="button-effect">Add book </Link>
       </div>
     );
   } else if (error) {
