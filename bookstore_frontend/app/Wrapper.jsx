@@ -4,6 +4,8 @@ import { toggleTheme } from "@/lib/theme/themeSlice";
 import { loadTheme } from "@/lib/utils/services";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useHydrateTheme = () => {
   const [ hydrated, setHydrated ] = useState(false);
@@ -37,6 +39,7 @@ const Wrapper = ({ children }) => {
           : "bg-gradient-to-r from-transparent to-zinc-300/50"
       } min-h-screen flex flex-col`}
     >
+      <ToastContainer theme={theme}/>
       <Navbar>Book Store</Navbar>
       {children}
     </div>

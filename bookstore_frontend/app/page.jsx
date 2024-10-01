@@ -1,50 +1,76 @@
 "use client";
 import BookCard from "@/components/cards/BookCard";
-import { updateBooks } from "@/lib/books/bookSlice";
+import Pagination from "@/components/shared/Pagination";
+import { updateResults } from "@/lib/results/resultsSlice";
 import { baseUrl } from "@/lib/utils";
+import { useSearchParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const page = () => {
-  const books = useSelector((state) => state.books);
+  const books = useSelector((state) => state.results.books);
+  const totalPages = useSelector((state) => state.results.totalPages);
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
-  const [error, setError ] = useState('')
+  const params = useSearchParams();
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const [page, setPage] = useState(params.get("page") || 1);
+
 
   useEffect(() => {
     const fetchBooks = async () => {
-      if(books.length > 0) return;
       try {
-        const response = await fetch(
-          `${baseUrl}/books/?page=${page}`
-        )
+        const response = await fetch(`${baseUrl}/books/?page=${page}`);
         if (!response.ok) {
-          throw new Error(response.error);
+          const data = await response.json();
+          throw new Error(data.detail);
         } else {
-          const data = await response.json()
-          dispatch(updateBooks(data.results))
+          const data = await response.json();
+          dispatch(updateResults({
+            books: data.results,
+            totalPages: Math.ceil(data.count / 10)
+          }));
+          setError('')
         }
       } catch (error) {
-        setError(error.detail);
+        setError(error.message);
       }
     };
     fetchBooks();
   }, [page]);
 
-  if(books.length === 0 && !error) {
+  if (books.length === 0 && !error) {
     return (
       <div className="flex-1 flex items-center justify-center text-2xl">
         Loading...
       </div>
-    )
+    );
+  } else if (error) {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center text-2xl gap-4">
+        {error}
+        <button
+          onClick={() => {
+            router.push("/");
+            setPage(1); 
+          }}
+          className="button-effect"
+        >
+          Go Back?
+        </button>
+      </div>
+    );
   }
 
   return (
-    <div className="flex-1 cards-container grid grid-cols-2 max-sm:grid-cols-1 place-content-start gap-8 w-screen p-8 max-sm:p-4 overflow-scroll">
-      {books &&
-        books.map((book, index) => {
-          return <BookCard key={index} book={book} />;
-        })}
+    <div className="flex flex-col flex-1">
+      <div className="flex-1 cards-container grid grid-cols-2 max-sm:grid-cols-1 place-content-start gap-8 w-screen p-8 mb-12 max-sm:p-4 overflow-scroll">
+        {books &&
+          books.map((book, index) => {
+            return <BookCard key={index} book={book} />;
+          })}
+      </div>
+      <Pagination path='/' page={page} totalPages={totalPages} setPage={setPage}/>
     </div>
   );
 };

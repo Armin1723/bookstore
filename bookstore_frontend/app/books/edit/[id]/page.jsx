@@ -6,8 +6,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const page = () => {
-  const books = useSelector((state) => state.books);
-  const theme = useSelector((state) => state.theme.value);
+  const books = useSelector((state) => state.results.books) || [];
+  const theme = useSelector((state) => state.theme.value) || 'light';
   const { id } = useParams();
   const [book, setBook] = useState({});
 

@@ -1,13 +1,13 @@
 'use client'
 import { configureStore } from '@reduxjs/toolkit'
 import themeReducer from './theme/themeSlice'
-import bookReducer from './books/bookSlice'
+import resultReducer from './results/resultsSlice'
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
         theme : themeReducer,
-        books : bookReducer
+        results : resultReducer
     },
   })
 }

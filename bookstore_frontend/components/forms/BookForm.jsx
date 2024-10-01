@@ -1,7 +1,10 @@
 "use client";
 import { baseUrl } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const BookForm = ({ purpose, book = {} }) => {
   const {
@@ -18,6 +21,8 @@ const BookForm = ({ purpose, book = {} }) => {
     },
   });
 
+  const router = useRouter();
+
   useEffect(() => {
     if (purpose === "update") {
       reset({
@@ -32,9 +37,10 @@ const BookForm = ({ purpose, book = {} }) => {
   const [globalError, setGlobalError] = React.useState(null);
 
   const onSubmit = async (data) => {
+    const bookToast = toast.loading("Adding book...");
+
     try {
       const endpoint = purpose === "create" ? "create/" : `update/${book.id}/`;
-
       const response = await fetch(`${baseUrl}/books/${endpoint}`, {
         method: purpose === "create" ? "POST" : "PUT",
         headers: {
@@ -43,18 +49,31 @@ const BookForm = ({ purpose, book = {} }) => {
         body: JSON.stringify(data),
       });
       if (response.ok) {
-        alert("Book added successfully");
+        toast.update(bookToast, {
+          render: `Book ${purpose === 'update' ? 'updated' : 'created'} successfully`,
+          type: "success",
+          isLoading: false,
+          autoClose: 2000,
+        });
+        reset();
+        router.push("/");
       } else {
         const data = await response.json();
         throw new Error(data.error);
       }
     } catch (error) {
       setGlobalError(error.message);
-    }
+      toast.update(bookToast, {
+        render: error.message,
+        type: "error",
+        isLoading: false,
+        autoClose: 2000,
+      });
+      }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 p-4">
+    <motion.form initial={{ y: '30px', opacity : 0}} animate={{y: 0, opacity: 1}} transition={{delay : 0.4, duration: 0.6, staggerChildren : 0.4}} onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 p-4">
       <div className="title flex flex-col gap-2">
         <input
           type="text"
@@ -141,7 +160,7 @@ const BookForm = ({ purpose, book = {} }) => {
       >
         {purpose === "create" ? "Add new book" : "Update book"}
       </button>
-    </form>
+    </motion.form>
   );
 };
 

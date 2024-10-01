@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="font-['inter'] min-h-screen w-screen flex flex-col overflow-hidden">
+      <body className="font-['inter'] min-h-screen w-screen flex flex-col">
         <StoreProvider>
           <NextTopLoader color='#22072c' shadow="0 1px 20px #f197f488, 0 0 10px #f197f4f1"/>
           <Wrapper>{children}</Wrapper>
