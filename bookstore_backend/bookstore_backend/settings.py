@@ -132,7 +132,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://mainbookstore.netlify.app"
+    "https://bookstore-two-alpha.vercel.app"
 ]

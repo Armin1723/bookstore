@@ -1,21 +1,42 @@
 "use client";
 import { baseUrl } from "@/lib/utils";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-const BookForm = ({ purpose }) => {
+const BookForm = ({ purpose, book = {} }) => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      title: book?.title || "",
+      author: book?.author || "",
+      genre: book?.genre || "",
+      published_year: book?.published_year || "",
+    },
+  });
+
+  useEffect(() => {
+    if (purpose === "update") {
+      reset({
+        title: book?.title || "",
+        author: book?.author || "",
+        genre: book?.genre || "",
+        published_year: book?.published_year || "",
+      });
+    }
+  }, [book]);
 
   const [globalError, setGlobalError] = React.useState(null);
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch(`${baseUrl}/books/create/`, {
-        method: "POST",
+      const endpoint = purpose === "create" ? "create/" : `update/${book.id}/`;
+
+      const response = await fetch(`${baseUrl}/books/${endpoint}`, {
+        method: purpose === "create" ? "POST" : "PUT",
         headers: {
           "Content-Type": "application/json",
         },

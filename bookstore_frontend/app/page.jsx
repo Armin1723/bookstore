@@ -13,9 +13,7 @@ const page = () => {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      if(books.length + 1 % ( page * 10) === 0){
-        return
-      }
+      if(books.length > 0) return;
       try {
         const response = await fetch(
           `${baseUrl}/books/?page=${page}`
@@ -33,7 +31,13 @@ const page = () => {
     fetchBooks();
   }, [page]);
 
-
+  if(books.length === 0 && !error) {
+    return (
+      <div className="flex-1 flex items-center justify-center text-2xl">
+        Loading...
+      </div>
+    )
+  }
 
   return (
     <div className="flex-1 cards-container grid grid-cols-2 max-sm:grid-cols-1 place-content-start gap-8 w-screen p-8 max-sm:p-4 overflow-scroll">

@@ -11,43 +11,47 @@ import { useSelector } from "react-redux";
 const page = () => {
   const params = useParams();
   const books = useSelector((state) => state.books);
+  const theme = useSelector((state) => state.theme.value);
   const [book, setBook] = useState({});
   const [id, setId] = useState(params.id);
+  console.log(books)
 
-  useEffect(() => {
-    books.map((book, idx) => {
-      if (book.id == id) {
-        setBook(book);
+  useEffect(() => {  
+    const fetchBook = async () => {
+
+      const foundBook = books.find((book) => book.id == params.id);
+      
+      if (foundBook) {
+        setBook(foundBook);
         return;
       }
-    });
-    try {
-      const fetchBook = async () => {
-        const response = await fetch(
-          `${baseUrl}/books/${params.id}/`
-        );
+
+      try {
+        const response = await fetch(`${baseUrl}/books/${params.id}/`);
+        
         if (!response.ok) {
-          throw new Error("Some error");
-        } else {
-          const data = await response.json();
-          setBook(data);
+          throw new Error("Error fetching the book from the API");
         }
-      };
-      fetchBook();
-    } catch (error) {
-      console.log(error.message);
-    }
+  
+        const data = await response.json();
+        setBook(data);
+        
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+  
+    fetchBook();
   }, [id]);
 
   const background = getRandomBackground(book.title + book.author);
-  const selection = `selection:bg-[${background.shadow}]`;
 
   return (
     <div
-      className={`flex-1 flex items-center justify-center relative overflow-hidden ${selection} `}
+      className="flex-1 flex items-center justify-center relative overflow-hidden "
     >
       <div
-        className="blob"
+        className={`blob ${theme === 'dark' ? 'opacity-45' : 'opacity-100'}`}
         style={{
           background: background.blobGradient,
           position: "absolute",
@@ -56,15 +60,14 @@ const page = () => {
           width: "120%",
           height: "120%",
           borderRadius: "50%",
-          filter: "blur(20px)",
-          opacity: 1.3,
-          zIndex: -1,
+          filter: "blur(40px)",
+          zIndex: 1,
           animation: "moveBlob 10s infinite ease-in-out",
         }}
       ></div>
 
       <div
-        className="rounded-lg flex flex-col justify-between md:max-w-[50vw] max-w-[80vw] p-6 min-h-[70vh] aspect-[3/4] text-black"
+        className="rounded-lg flex flex-col justify-between md:max-w-[50vw] max-w-[80vw] p-6 min-h-[70vh] aspect-[3/4] text-black z-[2]"
         style={{
           background: background.gradient,
           boxShadow: `0 0 25px ${background.shadow}`,
