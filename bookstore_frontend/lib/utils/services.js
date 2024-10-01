@@ -25,3 +25,30 @@ export const getRandomBackground = (str) => {
   };
   return background;
 };
+
+export const loadTheme = () => {
+  if (typeof window === 'undefined') return undefined; // Don't use localStorage during SSR
+
+  try {
+    const serializedState = localStorage.getItem('theme');
+    if (serializedState === null) {
+      return undefined; // No saved theme, use default
+    }
+    return JSON.parse(serializedState); // Return the saved theme
+  } catch (err) {
+    console.error('Could not load theme state', err);
+    return undefined;
+  }
+}
+
+export const saveTheme = (theme) => {
+  if (typeof window == 'undefined') {
+    return
+  }
+  try {
+    const serializedState = JSON.stringify(theme);
+    localStorage.setItem('theme', serializedState);
+  } catch (err) {
+    console.error('Could not save theme state', err);
+  }
+}

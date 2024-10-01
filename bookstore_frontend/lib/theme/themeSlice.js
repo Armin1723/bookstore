@@ -1,21 +1,22 @@
-'use client'
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
+import { loadTheme, saveTheme } from "../utils/services";
 
-const defaultTheme = localStorage.getItem('theme') || 'light'
+const defaultTheme =
+  typeof window !== "undefined" ? loadTheme() || "light" : "light";
 
 const themeSlice = createSlice({
-    name: 'theme',
-    initialState: {
-        value: defaultTheme
+  name: "theme",
+  initialState: {
+    value: defaultTheme,
+  },
+  reducers: {
+    toggleTheme: (state) => {
+      state.value = state.value === "light" ? "dark" : "light";
+      saveTheme(state.value)
     },
-    reducers: {
-        toggleTheme: (state) => {
-            state.value = state.value === 'light' ? 'dark' : 'light';
-            localStorage.setItem('theme', state.value)
-        }
-    }
+  },
 });
 
-export const { toggleTheme } = themeSlice.actions
+export const { toggleTheme } = themeSlice.actions;
 
 export default themeSlice.reducer;

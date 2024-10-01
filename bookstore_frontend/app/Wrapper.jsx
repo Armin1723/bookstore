@@ -1,9 +1,34 @@
 "use client";
 import Navbar from "@/components/shared/Navbar";
-import { useSelector } from "react-redux";
+import { toggleTheme } from "@/lib/theme/themeSlice";
+import { loadTheme } from "@/lib/utils/services";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+const useHydrateTheme = () => {
+  const [ hydrated, setHydrated ] = useState(false);
+  const theme = useSelector((state) => state.theme.value);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const savedTheme = loadTheme();
+    if (savedTheme !== theme) {
+      dispatch(toggleTheme());
+    }
+    setHydrated(true);
+  }, [dispatch]);
+  return hydrated;
+};
 
 const Wrapper = ({ children }) => {
+  const hydrated = useHydrateTheme();
   const theme = useSelector((state) => state.theme.value);
+
+  if (!hydrated) {
+    // Optionally render a loader or empty div during hydration
+    return <div style={{ visibility: 'hidden' }}>Loading...</div>;
+  }
+
   return (
     <div
       className={` ${
