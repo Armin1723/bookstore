@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-=!snnqzt=#ux9))1y+oztd*6v$ffp&zuokupn9%vu7af31bwf@
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'bookstore-backend.onrender.app'
+    'https://bookstore-n0vk.onrender.com'
 ]
 
 
