@@ -3,7 +3,7 @@
 
 ## Introduction
 
-Bookstore is a book management app bootstrapped on NextJs frontend and django-rest backend that allows for CRUD opeations on books using an interative USer Interface. It leverages various other technologies like tailwindCSS for styling , react-hook-form for form validation, react-toastify for success and error messages, redux for global state management and drf-yasg, swagger for API documentation. A user can add, create, update, delete or view books in this app.
+Bookstore is a book management app bootstrapped on NextJs frontend and django-rest backend that allows for CRUD opeations on books using an interative User Interface. It leverages various other technologies like tailwindCSS for styling , react-hook-form for form validation, react-toastify for success and error messages, redux for global state management and drf-yasg, swagger for API documentation. A user can add, create, update, delete or view books in this app.
 
 ## State Management
 
