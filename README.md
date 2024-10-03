@@ -5,6 +5,20 @@
 
 Bookstore is a book management app bootstrapped on NextJs frontend and django-rest backend that allows for CRUD opeations on books using an interative User Interface. It leverages various other technologies like tailwindCSS for styling , react-hook-form for form validation, react-toastify for success and error messages, redux for global state management and drf-yasg, swagger for API documentation. A user can add, create, update, delete or view books in this app.
 
+## Live Project Link
+
+### NextJs Frontend: 
+
+```sh
+https://bookstore-two-alpha.vercel.app
+```
+
+### Backend API Link:
+
+```sh
+https://bookstore-n0vk.onrender.com
+```
+
 ## State Management
 
 This project uses Redux for state management. Redux helps to manage the state of the application in a predictable way. The state is centralized in a single store, making it easier to manage and debug.
