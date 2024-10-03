@@ -1,0 +1,12 @@
+version: 1
+services:
+  - type: web
+    name: bookstore-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python manage.py runserver 0.0.0.0:8000"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: bookstore_backend.settings  
+    autoDeploy: true
+    postInstallCommand: "python manage.py collectstatic --noinput"  
