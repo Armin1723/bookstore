@@ -1,6 +1,10 @@
 
 ## Getting Started
 
+### Introduction
+
+Bookstore is a book management app bootstrapped on NextJs frontend and django-rest backend that allows for CRUD opeations on books using an interative USer Interface. It leverages various other technologies like tailwindCSS for styling , react-hook-form for form validation, react-toastify for success and error messages, redux for global state management and drf-yasg, swagger for API documentation. A user can add, create, update, delete or view books in this app.
+
 ### State Management
 
 This project uses Redux for state management. Redux helps to manage the state of the application in a predictable way. The state is centralized in a single store, making it easier to manage and debug.
@@ -126,47 +130,47 @@ URL: `/admin/`
 
 Description: Django admin interface.
 
-Books API
+**Books API**
 
   **- List all books.**
   
-    URL: `/api/books`
-  
-    Method:  GET
-  
-    Description: Lists all book with an additional `?page=` query for getting paginated results.
+  URL: `/api/books`
+
+  Method:  GET
+
+  Description: Lists all book with an additional `?page=` query for getting paginated results.
   
   **- Create a book.**
   
-    URL:  `api/create`
-  
-    Method:  POST
-  
-    Description:  Creates a book in the database with Author, Title, Genre and Published_year fields.
+  URL:  `api/create`
+
+  Method:  POST
+
+  Description:  Creates a book in the database with Author, Title, Genre and Published_year fields.
   
   **- Fetching a single book.**
   
-    URL:  `/api/books/{id}`
-  
-    Method:  GET
-  
-    Description:  Fetches details about a single book based on its unique id.
+  URL:  `/api/books/{id}`
+
+  Method:  GET
+
+  Description:  Fetches details about a single book based on its unique id.
   
   **- Update a book.**
   
-    URL:  `api/books/edit/{id}`
-  
-    Method: PUT
-  
-    Description:  Modies the content of already existing book.
+  URL:  `api/books/edit/{id}`
+
+  Method: PUT
+
+  Description:  Modies the content of already existing book.
   
   **- Delete book.**
   
-    URL:  `api/books/delete/{id}`
-  
-    Method: DELETE
-  
-    Description:  Deletes a given book based on Id identitfier.
+  URL:  `api/books/delete/{id}`
+
+  Method: DELETE
+
+  Description:  Deletes a given book based on Id identitfier.
 
 #### Swagger UI
 
