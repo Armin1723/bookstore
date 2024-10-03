@@ -9,15 +9,11 @@ Bookstore is a book management app bootstrapped on NextJs frontend and django-re
 
 ### NextJs Frontend: 
 
-```sh
-https://bookstore-two-alpha.vercel.app
-```
+[https://bookstore-two-alpha.vercel.app](https://bookstore-two-alpha.vercel.app)
 
 ### Backend API Link:
 
-```sh
-https://bookstore-n0vk.onrender.com
-```
+[https://bookstore-n0vk.onrender.com](https://bookstore-n0vk.onrender.com)
 
 ## State Management
 
