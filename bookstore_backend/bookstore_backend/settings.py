@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'books',
     'drf_yasg',
-    'corsheaders'
+    'corsheaders', 
 ]
 
 MIDDLEWARE = [
@@ -128,13 +128,13 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-STATIC_URL = 'static/'
+STATIC_URL = 'staticfiles/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # For additional static files in the development
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'staticfiles'),
 ]
 
 # Default primary key field type
