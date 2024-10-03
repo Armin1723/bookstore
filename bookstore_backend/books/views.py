@@ -7,6 +7,9 @@ from .serializers import BookSerializer
 from rest_framework.pagination import PageNumberPagination
 from django.http import Http404
 
+from django.http import HttpResponse
+from django.contrib.auth import get_user_model
+
 # Create a Book
 class BookCreateView(APIView):
     def post(self, request):
@@ -70,3 +73,15 @@ class BookDeleteView(APIView):
         book = self.get_object(pk)
         book.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class SuperUserView(APIView):
+    def get(self, request):
+        User = get_user_model()
+        username = 'airuz'  # Change this to your desired username
+        password = 'airuz2323'  # Change this to your desired password
+        email = 'alam.airuz23@gmail.com'
+        if not User.objects.filter(username=username).exists():
+            User.objects.create_superuser(username=username, email=email, password=password)
+            return HttpResponse("Superuser created successfully!")
+        else:
+            return HttpResponse("Superuser already exists.")
