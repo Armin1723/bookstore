@@ -4,7 +4,8 @@ from .views import (
     BookListView,
     BookDetailView,
     BookUpdateView,
-    BookDeleteView
+    BookDeleteView,
+    CreateSuperUser
 )
 
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path('books/<int:pk>/', BookDetailView.as_view(), name='book-detail'), # GET: Retrieve a single book
     path('books/update/<int:pk>/', BookUpdateView.as_view(), name='book-update'), # PUT: Update a book
     path('books/delete/<int:pk>/', BookDeleteView.as_view(), name='book-delete'), # DELETE: Delete a book
+    path('create-superuser/', CreateSuperUser.as_view(), name='create_superuser'),
 ]
