@@ -74,13 +74,12 @@ class BookDeleteView(APIView):
         book.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class CreateSuperUser(APIView):
-    def post(self, request):
+class SuperUserView(APIView):
+    def get(self, request):
         User = get_user_model()
-        username = 'airuz'
-        password = 'airuz2323'
-        email = 'airuz.alam23@gmail.com'
-
+        username = 'airuz'  
+        password = 'airuz2323'  
+        email = 'alam.airuz23@gmail.com'
         if not User.objects.filter(username=username).exists():
             User.objects.create_superuser(username=username, email=email, password=password)
             return HttpResponse("Superuser created successfully!")
