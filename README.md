@@ -88,6 +88,68 @@
 
 The API documentation for the Django backend can be accessed at `http://localhost:8000/swagger` or `http://localhost:8000/redoc` once the server is running.
 
+## API Endpoints.
+
+#### Admin
+
+URL: `/admin/`
+
+Description: Django admin interface.
+
+Books API
+
+- List all books.
+
+  URL: `/api/books`
+
+  Method:  GET
+
+  Description: Lists all book with an additional `?page=` query for getting paginated results.
+
+- Create a book
+
+  URL:  `api/create`
+
+  Method:  POST
+
+  Description:  Creates a book in the database with Author, Title, Genre and Published_year fields.
+
+- Fetching a single book.
+
+  URL:  `/api/books/{id}`
+
+  Method:  GET
+
+  Description:  Fetches details about a single book based on its unique id.
+
+- Update a book.
+
+  URL:  `api/books/edit/{id}`
+
+  Method: PUT
+
+  Description:  Modies the content of already existing book.
+
+- Delete book.
+
+  URL:  `api/books/delete/{id}`
+
+  Method: DELETE
+
+  Description:  Deletes a given book based on Id identitfier.
+
+#### Swagger UI
+
+URL: `/swagger/`
+
+Description: Interactive API documentation using Swagger UI.
+
+#### ReDoc UI
+
+URL: `/redoc/`
+
+Description: Interactive API documentation using ReDoc UI.
+
 ## Contributing
 
 Contributions are welcome! Please fork the repository and submit a pull request.
