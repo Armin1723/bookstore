@@ -39,7 +39,7 @@ useDispatch: Returns the dispatch function to send actions to the store.
 
 The API documentation for the Django backend can be accessed at `http://localhost:8000/swagger` or `http://localhost:8000/redoc` once the server is running.
 
-## API Endpoints.
+### API Endpoints.
 
 #### Admin
 
@@ -102,10 +102,10 @@ URL: `/redoc/`
 Description: Interactive API documentation using ReDoc UI.
 
 
-### Prerequisites
+## Prerequisites
 
 - Python 3.x
-- Node.js and npm
+- npm
 - Django
 - Django-rest
 - NextJs
