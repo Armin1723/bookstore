@@ -1,5 +1,5 @@
 "use client";
-import { baseUrl } from "@/lib/utils";
+import { baseUrl } from "../../lib/utils/index.js";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
@@ -73,8 +73,8 @@ const BookForm = ({ purpose, book = {} }) => {
   };
 
   return (
-    <motion.form initial={{ y: '30px', opacity : 0}} animate={{y: 0, opacity: 1}} transition={{delay : 0.4, duration: 0.6, staggerChildren : 0.4}} onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 p-4">
-      <div className="title flex flex-col gap-2">
+    <motion.form role="form" initial={{ y: '30px', opacity : 0}} animate={{y: 0, opacity: 1}} transition={{delay : 0.4, duration: 0.6, staggerChildren : 0.4}} onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 p-4">
+      <div className="flex flex-col gap-2">
         <input
           type="text"
           className={`outline-none bg-transparent active:bg-transparent border-b-2 border-gray-500 p-2 pl-0 ${
@@ -87,7 +87,7 @@ const BookForm = ({ purpose, book = {} }) => {
         />
         {errors.title && (
           <p role="alert" className="text-sm text-red-700 italic">
-            Title is mandatory
+            Title is mandatory.
           </p>
         )}
       </div>
@@ -135,9 +135,10 @@ const BookForm = ({ purpose, book = {} }) => {
             errors.published_year &&
             "border-red-700 text-red-700 placeholder:text-red-700"
           }`}
-          placeholder="Year of Publication."
+          placeholder="year of Publication."
           {...register("published_year", {
             required: true,
+            valueAsNumber: true,
             min: 1600,
             max: new Date().getFullYear(),
           })}
@@ -156,6 +157,8 @@ const BookForm = ({ purpose, book = {} }) => {
 
       <button
         type="submit"
+        role="button"
+        test-id="book"
         className=" button-effect bg-gray-300/30 my-1 capitalize"
       >
         {purpose === "create" ? "Add new book" : "Update book"}

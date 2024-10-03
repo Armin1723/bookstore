@@ -1,3 +1,4 @@
+import React from "react";
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";

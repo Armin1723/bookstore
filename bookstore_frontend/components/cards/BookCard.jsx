@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import Link from "next/link";
-import { FaBook } from "react-icons/fa"
+import { FaBook } from "react-icons/fa";
 
 const BookCard = ({ book }) => {
   const [ref, inView] = useInView();
@@ -18,18 +18,22 @@ const BookCard = ({ book }) => {
         }}
         className="flex max-sm:flex-col flex-row items-center max-sm:items-start gap-4 shadow-[0_0_25px_gray] shadow-gray-500/40 backdrop-blur-md rounded-xl p-4 min-h-fit w-full hover-effect"
       >
-
         <div className="logo flex min-h-full items-center max-sm:items-start justify-center w-1/4">
-          <FaBook className="h-full drop-shadow-md text-6xl"/>
+          <FaBook className="h-full drop-shadow-md text-6xl" />
         </div>
 
         <div className="details flex flex-col w-3/4">
           <p className="text-2xl font-bold">{book.title}</p>
-          <p className="font-extralight !important">Year of Release : {book.published_year}</p>
-          <p>Author : {book.author}</p>
-          <p>
-            Genre : <span>{book.genre}</span>
-          </p>
+          <div className="font-extralight !important">
+            <span>Year of Release : </span>
+            <span> {book.published_year}</span>{" "}
+          </div>
+          <div>
+            <span>Author :</span> <span>{book.author}</span>
+          </div>
+          <div>
+            <span>Genre :</span> <span>{book.genre}</span>
+          </div>
           <div className="flex gap-4 pt-4">
             <Link
               href={`/books/${book.id}`}
@@ -40,10 +44,8 @@ const BookCard = ({ book }) => {
               </span>
               <p>Details</p>
             </Link>
-            
           </div>
         </div>
-
       </div>
     </motion.div>
   );
